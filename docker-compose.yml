@@ -10,3 +10,15 @@ services:
       - "5432:5432"
     volumes:
       - ./src/sql/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+  web:
+    image: javacruitment-image
+    build: 
+       context: .
+       dockerfile: Dockerfile
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+    

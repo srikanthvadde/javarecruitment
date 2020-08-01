@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'java'
 	id 'idea'
+	id 'eclipse'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -10,8 +11,8 @@ group = 'com.interview'
 version = '0.0.1'
 
 
-sourceCompatibility = 13
-targetCompatibility = 13
+sourceCompatibility = 11
+targetCompatibility = 11
 compileJava.options.encoding = 'UTF-8'
 
 repositories {

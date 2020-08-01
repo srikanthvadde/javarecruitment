@@ -37,4 +37,19 @@ public class UserDao {
 		}
 		return userRepository.save(user);
 	}
+	
+	public void delete(long id) throws UserNotFoundException
+	{
+		if(findOrDie(id) != null)
+		{
+			userRepository.deleteById(id);
+		}
+	}
+	
+
+	//we can use jpa method findByUsernameContainingIgnoreCase also //i preferred based on document
+	public List<UserEntity> getMatchedUserList(String enterUserName)
+	{
+		return  userRepository.fetchMatchedList(enterUserName);
+	}
 }
