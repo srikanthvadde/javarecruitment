@@ -61,7 +61,7 @@ class UserController {
 	
 	
 	//we can use getAllUsers() also by passing a parameter but for code reusabilty and better readibility i have written seperate method
-	@GetMapping("/getMatchUserList}")
+	@GetMapping("/getmatchuserlist}")
 	public List<UserEntity> getMatchedUserList(@RequestParam String enterUserName) throws UserNotFoundException {
 		return userService.getMatchedUserList(enterUserName);
 	}
