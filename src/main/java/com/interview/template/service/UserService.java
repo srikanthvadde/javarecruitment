@@ -39,11 +39,10 @@ public class UserService {
 	public void checkUserExists(long id) throws UserNotFoundException {
 		userDao.checkExists(id);
 	}
-	
-	//create user
-	public UserEntity createUser(UserEntity userEntity) throws Exception
-	{
-		if(validateUserInfo(userEntity)) {
+
+	// create user
+	public UserEntity createUser(UserEntity userEntity) throws Exception {
+		if (validateUserInfo(userEntity)) {
 			try {
 				return userDao.create(userEntity);
 			} catch (ConstraintViolationException e) {
@@ -52,39 +51,32 @@ public class UserService {
 		}
 		return userEntity;
 	}
-	
-	
-	//validation before creating user
-	public boolean validateUserInfo(UserEntity userEntity) throws Exception 
-	{
-		if(Strings.isBlank(userEntity.getPassword()))
-		{
+
+	// validation before creating user
+	public boolean validateUserInfo(UserEntity userEntity) throws Exception {
+		if (Strings.isBlank(userEntity.getPassword())) {
 			throw new UserNotFoundException("Password Should not be Empty or Blank");
 		}
-		
+
 		if (userBlockDataConfig.getUsernameBlackSet().contains(userEntity.getUsername().toLowerCase())) {
 			throw new IllegalAccessException(
 					"User  '" + userEntity.getUsername() + "' is not allowed to create since he is in block list.");
 		}
 		return true;
 	}
-	
-	//delete user
-	public void deleteById(long id) throws UserNotFoundException
-	{
+
+	// delete user
+	public void deleteById(long id) throws UserNotFoundException {
 		userDao.delete(id);
 	}
-	
-	//getMatchedList
-	public List<UserEntity> getMatchedUserList(String enterUserName)
-	{
+
+	// getMatchedList
+	public List<UserEntity> getMatchedUserList(String enterUserName) {
 		try {
-		return userDao.getMatchedUserList(enterUserName);
-		}catch(Exception e)
-		{
-			throw new RuntimeException("Exception While Fetching the Matched User List: "+enterUserName);
+			return userDao.getMatchedUserList(enterUserName);
+		} catch (Exception e) {
+			throw new RuntimeException("Exception While Fetching the Matched User List: " + enterUserName);
 		}
 	}
-
 
 }

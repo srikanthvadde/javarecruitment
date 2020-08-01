@@ -31,25 +31,23 @@ public class UserDao {
 		}
 	}
 
+	//create user
 	public UserEntity create(UserEntity user) {
 		if (user.getId() != null) {
 			throw new IllegalArgumentException("User already exists.");
 		}
 		return userRepository.save(user);
 	}
-	
-	public void delete(long id) throws UserNotFoundException
-	{
-		if(findOrDie(id) != null)
-		{
+
+	//delete
+	public void delete(long id) throws UserNotFoundException {
+		if (findOrDie(id) != null) {
 			userRepository.deleteById(id);
 		}
 	}
-	
 
-	//we can use jpa method findByUsernameContainingIgnoreCase also //i preferred based on document
-	public List<UserEntity> getMatchedUserList(String enterUserName)
-	{
-		return  userRepository.fetchMatchedList(enterUserName);
+	// we can use jpa method findByUsernameContainingIgnoreCase also //i preferred based on document
+	public List<UserEntity> getMatchedUserList(String enterUserName) {
+		return userRepository.fetchMatchedList(enterUserName);
 	}
 }
