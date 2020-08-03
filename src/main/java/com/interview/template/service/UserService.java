@@ -55,7 +55,7 @@ public class UserService {
 	// validation before creating user
 	public boolean validateUserInfo(UserEntity userEntity) throws Exception {
 		if (Strings.isBlank(userEntity.getPassword())) {
-			throw new UserNotFoundException("Password Should not be Empty or Blank");
+			throw new IllegalArgumentException("Password Should not be Empty or Blank");
 		}
 
 		if (userBlockDataConfig.getUsernameBlackSet().contains(userEntity.getUsername().toLowerCase())) {
